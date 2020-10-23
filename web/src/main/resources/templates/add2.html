@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}" />
+    <link rel="stylesheet" th:href="@{/css/bootstrap-table.css}" />
+    <link rel="stylesheet" th:href="@{/css/bootstrap/bootstrap.css}" />
+    <link rel="stylesheet" th:href="@{/css/bootstrap/bootstrap-table.css}" />
+</head>
+<body>
+<div class="container">
+    <h1>添加订单</h1>
+    <form class="form-horizontal" th:action="@{saveOrder}" method="post">
+        <input type="hidden" name="orderId" th:value="${order.orderId}" >
+        <div class="form-group">
+            <label for="number" class="col-lg-2 control-label">编号</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="number" id="number" placeholder="number" th:value="${order.number}">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="orderName" class="col-lg-2 control-label">订单名称</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="orderName" id="orderName" placeholder="orderName" th:value="${order.orderName}">
+            </div>
+        </div>
+
+
+
+        <label for="typeId" class="col-lg-2 control-label">支付方式</label>
+        <div class="col-sm-10">
+            <select data-placeholder="请选择方式"  id="typeId" name="typeId"  class="form-control chosen-select" style="width: 100%; "  required >
+                <option   value=""   selected>请选择</option>
+                <option   th:each="orderEntityList:${orderEntityList}" th:value="${orderEntityList.typeId}"  th:text="${orderEntityList.typeName}" ></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="orderDate" class="col-lg-2 control-label">下单时间</label>
+            <div class="col-sm-10">
+                <input type="date" class="form-control" name="orderDate" id="orderDate" placeholder="orderDate" th:value="${order.orderDate}">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="orderPrice" class="col-lg-2 control-label">价格</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="orderPrice" id="orderPrice" placeholder="orderPrice" th:value="${order.orderPrice}">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-10">
+                <input type="submit" value="Submit" class="btn btn-info" />
+                <a th:href="@{findOrder}" class="btn btn-info">取消</a>
+            </div>
+        </div>
+
+    </form>
+
+</div>
+</body>
+</html>
